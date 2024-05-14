@@ -32,11 +32,29 @@
         </a>
       </li>
       @endcan
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('creditor_offices') }}">
+          <i class="bi bi-building"></i>
+          <span>{{ __('Creditor Offices') }}</span>
+        </a>
+      </li>
+
+
       @can('view client')
       <li class="nav-item">
         <a class="nav-link " href="{{ url('clients') }}">
           <i class="bi bi-people"></i>
           <span>{{ __('Clients') }}</span>
+        </a>
+      </li>
+      @endcan
+
+      @can('view application')
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('applications') }}">
+          <i class="bi bi-people"></i>
+          <span>{{ __('Applications') }}</span>
         </a>
       </li>
       @endcan

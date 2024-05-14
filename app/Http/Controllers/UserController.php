@@ -28,7 +28,7 @@ class UserController extends Controller implements HasMiddleware
     }
     public function index() {
 
-        $users = User::withoutRole('Super Admin')->get();
+        $users = User::withoutRole(['Super Admin', 'Client'])->get();
         return view('role-permission.user.index', [
             'users' => $users
         ]);

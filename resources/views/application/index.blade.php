@@ -1,10 +1,10 @@
 <x-app-layout>
 	
     <div class="pagetitle">
-      <h1>Users</h1>
+      <h1>Applications</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{ url('users') }}">Users</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('applications') }}">Applications</a></li>
           <li class="breadcrumb-item active">All</li>
         </ol>
       </nav>
@@ -16,15 +16,15 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title float-right">
-        				<x-buttons.add :href="url('users/create')">
-                  {{ __("Add User") }}    
+        				<x-buttons.add :href="url('applications/create')">
+                  {{ __("Add Application") }}    
                 </x-buttons.add>
               </h5>
 
-              <h5 class="card-title">Users</h5>
-              	@if(session('status'))
+              <h5 class="card-title">Applications</h5>
+              	@if(session('success'))
                 <x-alerts.success>
-                  {{ session('status') }}
+                  {{ session('success') }}
                 </x-alerts.success>
         				@endif
 
@@ -32,44 +32,28 @@
                 <thead>
                   <tr>
                     <th>SR#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    @can('view role')
-                    <th>Roles</th>
-                    @endcan
+                    <th>Notes</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                	@foreach($users as $key => $user)
+                  @if(!empty($applications))
+                	@foreach($applications as $key => $application)
 	                  <tr>
 	                    <td>{{ $key+1 }}</td>
-	                    <td>{{ $user->name }}</td>
-                      <td>{{ $user->email }}</td>
-                      
-                      @can('view role')
+                      <td>{{ $application->notes }}</td>
+	                    
                       <td>
-                        @if(!empty($user->getRoleNames()))
-                        @foreach($user->getRoleNames() as $rolename)
-
-                          <label class="badge bg-primary mx-1">{{ $rolename }}</label>
-
-                        @endforeach
-                        @endif
-                      </td>
-                      @endcan
-	                    <td>
-                      
-                      @can('edit user')
+                      @can('edit application')
                       <x-buttons.edit 
-                        :href="url('users/'. $user->id .'/edit')"> 
+                        :href="url('applications/'. $application->id .'/edit')"> 
                           {{ __('Edit') }} 
                       </x-buttons.edit>
                       @endcan
 
-                      @can('delete user')
+                      @can('delete application')
                         <x-buttons.delete 
-                          :href="url('users/'. $user->id .'/delete')"> 
+                          :href="url('applications/'. $application->id .'/delete')"> 
                           {{ __('Delete') }}
                         </x-buttons.delete>
 
@@ -77,6 +61,7 @@
                       @endcan
 	                  </tr>
                 	@endforeach
+                  @endif
                   
                 </tbody>
               </table>

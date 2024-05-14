@@ -4,7 +4,7 @@
       <h1>Clients</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Clients</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('clients') }}">Clients</a></li>
           <li class="breadcrumb-item active">All</li>
         </ol>
       </nav>
@@ -31,6 +31,10 @@
                     <th>SR#</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Debt</th>
+                    <th>Income</th>
+                    <th>Expenditure</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -38,18 +42,76 @@
                 	@foreach($clients as $key => $client)
 	                  <tr>
 	                    <td>{{ $key+1 }}</td>
-	                    <td>{{ $client->name }}</td>
+	                    <td>{{ $client->name }} {{ $client->surname }}</td>
                       <td>{{ $client->email }}</td>
+                      <td>{{ $client->mobile }}</td>
+                      
+                      <td>
+                        
+                        <x-buttons.add :href="url('debt/' . $client->user_id . '/create')">
+                          {{ __("Add") }}
+                        </x-buttons.add>
+
+                        <x-buttons.view :href="url('debt/'. $client->user_id .'/show')">
+                          {{ __("View") }}
+                        </x-buttons.view>
+
+                        <x-buttons.edit :href="url('debt/'. $client->user_id .'/edit')">
+                          {{ __("Edit") }}
+                        </x-buttons.edit>
+
+                      </td>
+
 	                    <td>
+                        
+                        <x-buttons.add :href="url('income/' . $client->user_id . '/create')">
+                          {{ __("Add") }}
+                        </x-buttons.add>
+
+                        <x-buttons.view :href="url('income/'. $client->user_id .'/show')">
+                          {{ __("View") }}
+                        </x-buttons.view>
+
+                        <x-buttons.edit :href="url('income/'. $client->user_id .'/edit')">
+                          {{ __("Edit") }}
+                        </x-buttons.edit>
+
+                      </td>
+
+                        
+
+
+
+                      <td>
+                        
+                          <x-buttons.add :href="url('expenditure/' . $client->user_id . '/create')">
+                            {{ __("Add") }}
+                          </x-buttons.add>
+
+                          <x-buttons.view :href="url('expenditure/'. $client->user_id .'/show')">
+                            {{ __("View") }}
+                          </x-buttons.view>
+
+                          <x-buttons.edit :href="url('expenditure/'. $client->user_id .'/edit')">
+                            {{ __("Edit") }}
+                          </x-buttons.edit>
+                      
+                      </td>
+
+                      <td>
+
+                        <x-buttons.view :href="url('clients/'. $client->user_id .'/show')">
+                          {{ __("View") }}
+                        </x-buttons.view>
 
                         @can('edit client')
-                          <x-buttons.edit :href="url('clients/'. $client->id .'/edit')">
+                          <x-buttons.edit :href="url('clients/'. $client->user_id .'/edit')">
                             {{ __("Edit") }}
                           </x-buttons.edit>
                         @endcan
 
                         @can('delete client')
-                          <x-buttons.delete :href="url('clients/'. $client->id .'/delete')">
+                          <x-buttons.delete :href="url('clients/'. $client->user_id .'/delete')">
                             {{ __("Delete") }}
                           </x-buttons.delete>
 

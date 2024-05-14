@@ -4,7 +4,7 @@
       <h1>Create User</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Users</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('users') }}">Users</a></li>
           <li class="breadcrumb-item active">Create</li>
         </ol>
       </nav>
@@ -48,7 +48,7 @@
                   <x-input-label for="userEmail"> {{ __("Email") }}</x-input-label>
                   <x-text-input 
                     type="text" 
-                    name="name" 
+                    name="email" 
                     id="userEmail" 
                     :value="old('email', '')" 
                     required 
@@ -64,8 +64,8 @@
 
                   <x-input-label for="userPassword"> {{ __("Password") }}</x-input-label>
                   <x-text-input 
-                    type="text" 
-                    name="name" 
+                    type="password" 
+                    name="password" 
                     id="userPassword" 
                     :value="old('password', '')" 
                     required 
