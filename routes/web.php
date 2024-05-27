@@ -14,25 +14,27 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth','role:Super Admin|Admin'])->group(function () {
+Route::middleware(['auth','role:Super Admin|Admin|Agent'])->group(function () {
 
-    Route::resource('permissions', App\Http\Controllers\PermissionController::class);
-    Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
+    Route::middleware(['role:Super Admin|Admin'])->group(function () {
+        Route::resource('permissions', App\Http\Controllers\PermissionController::class);
+        Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\PermissionController::class, 'destroy']);
 
-    Route::resource('roles', App\Http\Controllers\RoleController::class);
-    Route::get('roles/{roleId}/delete', [App\Http\Controllers\RoleController::class, 'destroy']);
+        Route::resource('roles', App\Http\Controllers\RoleController::class);
+        Route::get('roles/{roleId}/delete', [App\Http\Controllers\RoleController::class, 'destroy']);
 
-    Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
-    Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
+        Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'addPermissionToRole']);
+        Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\RoleController::class, 'givePermissionToRole']);
 
-    Route::resource('users', App\Http\Controllers\UserController::class);
-    Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);
-
+        Route::resource('users', App\Http\Controllers\UserController::class);
+        Route::get('users/{userId}/delete', [App\Http\Controllers\UserController::class, 'destroy']);
+    });
     Route::get('creditor_offices', [App\Http\Controllers\CreditorOfficeController::class, 'index']);
     Route::get('creditor_offices/create', [App\Http\Controllers\CreditorOfficeController::class, 'create']);
     Route::post('creditor_offices', [App\Http\Controllers\CreditorOfficeController::class, 'store']);
 
     Route::get('clients', [App\Http\Controllers\ClientController::class, 'index']);
+    Route::get('clients/create', [App\Http\Controllers\ClientController::class, 'create']);
     Route::post('clients', [App\Http\Controllers\ClientController::class, 'store']);
     Route::get('clients/{userId}/edit', [App\Http\Controllers\ClientController::class, 'edit']);
     Route::put('clients', [App\Http\Controllers\ClientController::class, 'update']);
@@ -69,6 +71,13 @@ Route::middleware('auth')->group(function () {
     Route::get('applications/create', [App\Http\Controllers\ApplicationController::class, 'create']);
     Route::post('applications', [App\Http\Controllers\ApplicationController::class, 'store']);
     Route::get('applications/{applicationId}/edit', [App\Http\Controllers\ApplicationController::class, 'edit']);
+    Route::get('mdiAndPaymentsCalcualtions/{application}', [App\Http\Controllers\ApplicationController::class, 'mdiAndPaymentsCalcualtions']);
+    
+    Route::get('paymentsFromClient/{application}', [App\Http\Controllers\ApplicationController::class, 'paymentsFromClient']);    
+    Route::get('addClientPayment/{application}', [App\Http\Controllers\ApplicationController::class, 'addClientPayment']);
+    Route::post('saveClientPayment', [App\Http\Controllers\ApplicationController::class, 'saveClientPayment']);
+    
+    Route::get('paymentsToCreditors/{application}', [App\Http\Controllers\ApplicationController::class, 'paymentsToCreditors']);
 
     Route::get('/', function () {
         return view('dashboard');

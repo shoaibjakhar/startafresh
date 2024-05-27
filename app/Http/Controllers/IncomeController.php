@@ -74,4 +74,5 @@ class IncomeController extends Controller
         return redirect()->back()->with('success', "Client Income Deleted Successfully!");
 
     }
+
 }

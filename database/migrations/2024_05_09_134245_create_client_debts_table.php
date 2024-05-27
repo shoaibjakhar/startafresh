@@ -16,12 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('creditor_office_id');
             $table->string('debt_reference')->nullable();
-            $table->integer('balance');
-            $table->integer('total_paid');
             $table->integer('current_debt');
-            $table->integer('offer');
-            $table->enum('acceptance_status', ['Not Accepted', 'Accepted']);
-            $table->date('acceptance_date');
             $table->mediumText('notes')->nullable();
             $table->timestamps();
         });

@@ -26,7 +26,7 @@
                 @csrf
 
                 <div class="col-md-4">
-                  <label for="UserName" class="form-label">Client</label>
+                  <label for="UserName" class="form-label">Client1</label>
                   
                   <select name="user_id" class="form-select" id="" required>
                     <option selected disabled value="">Choose...</option>
@@ -37,6 +37,20 @@
 
                   <x-input-error class="mt-2" :messages="$errors->get('user_id')" />
                 </div>
+
+                <!-- <div class="col-md-4">
+                  <label for="UserName" class="form-label">Client2</label>
+                  
+                  <select name="user_id2" class="form-select" id="" required>
+                    <option selected disabled value="">Choose...</option>
+                    @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    @endforeach
+                  </select>
+
+                  <x-input-error class="mt-2" :messages="$errors->get('user_id2')" />
+                </div> -->
+
 
                 <div class="row">
                 <h5 class="card-title">Notes</h5>

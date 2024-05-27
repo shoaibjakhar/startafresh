@@ -51,7 +51,7 @@
                       </td>
 
                       <td>
-                         {{ $user->creditorOffice }}
+                         {{ $clientDebt->creditorOffice->office_name }}
                       </td>
 
                       <td>

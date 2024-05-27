@@ -44,6 +44,24 @@
                       <td>{{ $application->notes }}</td>
 	                    
                       <td>
+
+                      <x-buttons.view 
+                        :href="url('mdiAndPaymentsCalcualtions/'. $application->id)"> 
+                          {{ __('MDI & Payments Calcualtions') }} 
+                      </x-buttons.view>
+                      
+                      <x-buttons.add
+                        :href="url('paymentsFromClient/' . $application->id)" >
+                        {{ __('Payments From Client') }}
+                      </x-buttons.add>
+
+                      <x-buttons.add
+                        :href="url('paymentsToCreditors/' . $application->id)" >
+                        {{ __('Payments To Creditors') }}
+                      </x-buttons.add>
+
+
+
                       @can('edit application')
                       <x-buttons.edit 
                         :href="url('applications/'. $application->id .'/edit')"> 

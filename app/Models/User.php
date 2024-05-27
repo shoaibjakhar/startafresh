@@ -67,7 +67,5 @@ class User extends Authenticatable
         return $this->hasMany(ClientDebt::class);
     }
 
-    public function creditorOffice() {
-        return $this->hasMany(CreditorOffice::class);
-    }
+
 }

@@ -55,7 +55,7 @@
                     />
                 </div>
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <x-input-label for="Balance"> {{ __("Balance") }}</x-input-label>
                   <x-text-input 
                     type="number" 
@@ -70,9 +70,9 @@
                     class="mt-2" 
                     :messages="$errors->get('balance')" 
                     />
-                </div>
+                </div> -->
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <x-input-label for="totalPaid"> {{ __("Total Paid") }}</x-input-label>
                   <x-text-input 
                     type="number" 
@@ -87,7 +87,7 @@
                     class="mt-2" 
                     :messages="$errors->get('total_paid')" 
                     />
-                </div>
+                </div> -->
 
                 <div class="col-md-4">
                   <x-input-label for="currentDebt"> {{ __("Current Debt") }}</x-input-label>
@@ -106,7 +106,7 @@
                     />
                 </div>
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <x-input-label for="offer"> {{ __("Offer") }}</x-input-label>
                   <x-text-input 
                     type="number" 
@@ -121,10 +121,10 @@
                     class="mt-2" 
                     :messages="$errors->get('offer')" 
                     />
-                </div>
+                </div> -->
 
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <label for="acceptanceStatus" class="form-label">Acceptance Status</label>
                   <select name="acceptance_status" class="form-select" id="" required>
                     <option selected disabled value="">Choose...</option>
@@ -132,9 +132,9 @@
                     <option value='{{ __("Not Accepted") }} '>{{ __("Not Accepted") }}</option>
                   </select>
                   <x-input-error class="mt-2" :messages="$errors->get('acceptance_status')" />
-                </div>
+                </div> -->
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <x-input-label for="acceptanceDate"> {{ __("Acceptance Date") }}</x-input-label>
                   <x-text-input 
                     type="date" 
@@ -148,7 +148,7 @@
                     class="mt-2" 
                     :messages="$errors->get('acceptance_date')" 
                     />
-                </div>
+                </div> -->
 
                 <div class="row">
                 <h5 class="card-title">Notes</h5>
