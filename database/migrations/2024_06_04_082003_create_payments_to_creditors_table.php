@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payments_to_creditors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('application_id');
             $table->foreignId('creditor_office_id');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('payments_to_creditors');
     }
 };

@@ -32,6 +32,13 @@
                 <thead>
                   <tr>
                     <th>SR#</th>
+                    <th>Client Name</th>
+                    <th>Client 2 Name</th>
+                    <th>Total Debt</th>
+                    <th>Offer Amount</th>
+                    <th>Total Income</th>
+                    <th>Total Paid</th>
+                    <th>Balance</th>
                     <th>Notes</th>
                     <th>Action</th>
                   </tr>
@@ -41,6 +48,22 @@
                 	@foreach($applications as $key => $application)
 	                  <tr>
 	                    <td>{{ $key+1 }}</td>
+                      <td>{{ $application->user->name }}</td>
+                      <td>{{ $application->user2->name ?? '' }}</td>
+                      <td>{{ $application->totalDebt }}</td>
+                      <td> - </td>
+                      <td>{{ $application->totalIncome }}</td>
+                      <td>{{ $application->totalPaidDebt }} 
+                        @if($application->totalPaidDebt && $application->totalDebt)
+                        ({{
+                          ($application->totalPaidDebt/ $application->totalDebt) * 100 }}%)
+                        @endif 
+                      </td>
+                      <td> {{ $application->totalDebt - $application->totalPaidDebt }} 
+                        @if($application->totalPaidDebt && $application->totalDebt)
+                          ({{ (($application->totalDebt - $application->totalPaidDebt)/$application->totalDebt) * 100 }}%)
+                        @endif
+                      </td>
                       <td>{{ $application->notes }}</td>
 	                    
                       <td>

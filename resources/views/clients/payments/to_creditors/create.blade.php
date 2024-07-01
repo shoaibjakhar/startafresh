@@ -1,11 +1,11 @@
 <x-app-layout>
   
     <div class="pagetitle">
-      <h1>Create Payment From Client</h1>
+      <h1>Create Payment To Creditor</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ url('clients') }}">Clients</a></li>
-          <li class="breadcrumb-item">Create Payment From Client</li>
+          <li class="breadcrumb-item">Create Payment To Creditor</li>
           <li class="breadcrumb-item active">Create</li>
         </ol>
       </nav>
@@ -20,9 +20,9 @@
               <h5 class="card-title float-right">
                 <x-buttons.warning :href="url('clients')">{{ __("Back") }}</x-button.warning>
               </h5>
-              <h5 class="card-title">Client Information</h5>
+              <h5 class="card-title">Creditor Information</h5>
 
-              <form action="{{ url('saveClientPayment') }}" method="POST" class="row g-3 needs-validation" novalidate>
+              <form action="{{ url('paymentsToCreditor') }}" method="POST" class="row g-3 needs-validation" novalidate>
 
                 <input type="hidden" name="application_id" value="{{ $application->id }}">
                 <input type="hidden" name="client_id" value="{{ $application->user->id }}">
@@ -83,10 +83,10 @@
 
                 <div class="col-md-4">
                   <label for="creditorOffice" class="form-label">Creditor Office</label>
-                  <select name="creditor_office_id" class="form-select" id="" required>
+                  <select name="creditor_office_id" class="form-select" id="creditor_office_id" required>
                     <option selected disabled value="">Choose...</option>
-                    @foreach($creditorOffices as $creditorOffice)
-                    <option value="{{ $creditorOffice->id }}">{{ $creditorOffice->office_name }}</option>
+                    @foreach($application->user->clientDebts as $clientDebt)
+                    <option value="{{ $clientDebt->creditorOffice->id }}">{{ $clientDebt->creditorOffice->office_name }}</option>
                     @endforeach
                   </select>
                   <x-input-error class="mt-2" :messages="$errors->get('creditor_office_id')" />

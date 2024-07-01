@@ -6,6 +6,7 @@ use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\CreditorOfficeController;
+use App\Http\Controllers\PaymentsFromClientsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -73,11 +74,15 @@ Route::middleware('auth')->group(function () {
     Route::get('applications/{applicationId}/edit', [App\Http\Controllers\ApplicationController::class, 'edit']);
     Route::get('mdiAndPaymentsCalcualtions/{application}', [App\Http\Controllers\ApplicationController::class, 'mdiAndPaymentsCalcualtions']);
     
-    Route::get('paymentsFromClient/{application}', [App\Http\Controllers\ApplicationController::class, 'paymentsFromClient']);    
-    Route::get('addClientPayment/{application}', [App\Http\Controllers\ApplicationController::class, 'addClientPayment']);
-    Route::post('saveClientPayment', [App\Http\Controllers\ApplicationController::class, 'saveClientPayment']);
+    Route::get('paymentsFromClient/{application}', [App\Http\Controllers\PaymentsFromClientsController::class, 'index']);    
+    Route::get('addClientPayment/{application}', [App\Http\Controllers\PaymentsFromClientsController::class, 'create']);
+    Route::post('paymentsFromClient', [App\Http\Controllers\PaymentsFromClientsController::class, 'store']);
+    Route::get('/get-amount', [App\Http\Controllers\PaymentsFromClientsController::class, 'getAmount']);
     
-    Route::get('paymentsToCreditors/{application}', [App\Http\Controllers\ApplicationController::class, 'paymentsToCreditors']);
+    Route::get('paymentsToCreditors/{application}', [App\Http\Controllers\PaymentsToCreditorsController::class, 'index']);
+    Route::get('addCreditorPayment/{application}', [App\Http\Controllers\PaymentsToCreditorsController::class, 'create']);
+    Route::post('paymentsToCreditor', [App\Http\Controllers\PaymentsToCreditorsController::class, 'store']);
+    Route::post('add_ccj', [App\Http\Controllers\ApplicationController::class, 'add_ccj']);
 
     Route::get('/', function () {
         return view('dashboard');

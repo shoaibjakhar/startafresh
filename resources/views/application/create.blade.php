@@ -38,7 +38,7 @@
                   <x-input-error class="mt-2" :messages="$errors->get('user_id')" />
                 </div>
 
-                <!-- <div class="col-md-4">
+                <div class="col-md-4">
                   <label for="UserName" class="form-label">Client2</label>
                   
                   <select name="user_id2" class="form-select" id="" required>
@@ -49,7 +49,7 @@
                   </select>
 
                   <x-input-error class="mt-2" :messages="$errors->get('user_id2')" />
-                </div> -->
+                </div>
 
 
                 <div class="row">

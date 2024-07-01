@@ -19,7 +19,7 @@
   <link href="{{ url('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
   <link href="{{ url('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
   <link href="{{ url('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Template Main CSS File -->
   <link href="{{ url('assets/css/style.css') }}" rel="stylesheet">
         
@@ -62,5 +62,6 @@
 
   <!-- Template Main JS File -->
   <script src="{{ url('assets/js/main.js') }}"></script>
+  <script src="{{ url('assets/js/custom.js') }}"></script>
 
 </html>

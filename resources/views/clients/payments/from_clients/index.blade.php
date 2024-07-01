@@ -31,36 +31,24 @@
                   <tr>
                     <th>SR#</th>
                     <th>Name</th>
-                    <th>Offer Amount</th>
-                    <th>All Individual payments</th>
-                    <th>Total Debt</th>
-                    <th>Total Paid</th>
-                    <th>Balance</th>
+                    <th>Creditor Office</th>
+                    <th>Amount Paid</th>
+                    <!-- <th>Total Paid</th> -->
+                    <!-- <th>Balance</th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   @if(!empty($application))
-                	@foreach($application->payments as $key => $payment)
+                	@foreach($application->paymentsFromClients as $key => $payment)
 	                  <tr>
-	                    <td>{{ 1 }}</td>
+	                    <td>{{ $key+1 }}</td>
 	                    <td>{{ $application->user->name }} {{ $application->user->clientDetails->surname }}</td>
-                      <td>{{ 1 }}</td>
-                      <td>{{ $payment->creditor_office_id }} : {{ $payment->amount }}</td>
-                      <td>{{ 1 }}</td>
-                      <td>{{ 1 }}</td>
-                      <td>{{ 1 }}</td>
+                      <td>{{ $payment->creditorOffice->office_name }}</td>
+                      <td>{{ $payment->amount }}</td>
                       
                       <td>
                         
-                        <x-buttons.add :href="url('debt/' . '' . '/create')">
-                          {{ __("Add") }}
-                        </x-buttons.add>
-
-                        <x-buttons.view :href="url('debt/'. '' .'/show')">
-                          {{ __("View") }}
-                        </x-buttons.view>
-
                         <x-buttons.edit :href="url('debt/'. '' .'/edit')">
                           {{ __("Edit") }}
                         </x-buttons.edit>
