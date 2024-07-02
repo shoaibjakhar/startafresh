@@ -24,7 +24,7 @@
 
               <form action="{{ url('paymentsFromClient') }}" method="POST" class="row g-3 needs-validation" novalidate>
 
-                <input type="hidden" name="application_id" value="{{ $application->id }}">
+                <input type="hidden" name="application_id" value="{{ $application->id }}" id="application_id">
                 <input type="hidden" name="client_id" value="{{ $application->user->id }}">
                 
                 @csrf
@@ -122,14 +122,6 @@
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
                   
                   <x-input-error class="mt-2" :messages="$errors->get('payment_date')" />
-
-                </div>
-
-                <div class="col-md-4">
-                  <x-input-label for="CCJ"> {{ __("CCJ") }}</x-input-label>
-                  <input type="checkbox" name="ccj" value="1">
-                  
-                  <x-input-error class="mt-2" :messages="$errors->get('cch')" />
 
                 </div>
 

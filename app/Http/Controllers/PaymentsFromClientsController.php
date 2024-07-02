@@ -107,7 +107,7 @@ class PaymentsFromClientsController extends Controller
         $total_clientDebt_for_mdi = $total_clientDebt;
 
         foreach($application->user->clientDebts as $clientDebt) {
-
+// echo $clientDebt->creditorOffice->id . "ccj amount = ";
             if(!empty($clientDebt->creditorOffice->ccjAmounts->amount) && $application->id == $clientDebt->creditorOffice->ccjAmounts->application_id){
 
                 $ccjAmount += $clientDebt->creditorOffice->ccjAmounts->amount;

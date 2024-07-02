@@ -1,13 +1,14 @@
 $(document).ready(function() {
     $('#creditor_office_id').on('change', function() {
         var creditorOfficeId = $(this).val();
+        var applicationId = $('#application_id').val();
         if (creditorOfficeId) {
             $.ajax({
                 url: 'http://127.0.0.1:8000/get-amount', // Update with your route URL
                 type: 'GET',
                 data: { 
                     creditor_office_id: creditorOfficeId,
-                    application_id: 5,
+                    application_id: applicationId,
                 },
                 success: function(response) {
                     // Assuming the response contains the amount in a field named 'amount'
