@@ -50,7 +50,7 @@
                   <x-input-label for="userEmail"> {{ __("Email") }}</x-input-label>
                   <x-text-input 
                     type="text" 
-                    name="name" 
+                    name="email" 
                     id="userEmail" 
                     :value="$user->email" 
                     required 
@@ -67,10 +67,9 @@
                   <x-input-label for="userPassword"> {{ __("Password") }}</x-input-label>
                   <x-text-input 
                     type="text" 
-                    name="name" 
+                    name="password" 
                     id="userPassword" 
                     :value="old('password', '')" 
-                    required 
                     />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>

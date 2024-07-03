@@ -37,7 +37,8 @@
                     @can('view role')
                     <th>Roles</th>
                     @endcan
-                    <th>Action</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,21 +59,22 @@
                         @endif
                       </td>
                       @endcan
-	                    <td>
                       
                       @can('edit user')
+	                    <td>
                       <x-buttons.edit 
                         :href="url('users/'. $user->id .'/edit')"> 
                           {{ __('Edit') }} 
                       </x-buttons.edit>
+                    </td>
                       @endcan
 
                       @can('delete user')
+                      <td>
                         <x-buttons.delete 
                           :href="url('users/'. $user->id .'/delete')"> 
                           {{ __('Delete') }}
                         </x-buttons.delete>
-
 	                    </td>
                       @endcan
 	                  </tr>

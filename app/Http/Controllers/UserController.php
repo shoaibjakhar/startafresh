@@ -28,6 +28,10 @@ class UserController extends Controller implements HasMiddleware
     }
     public function index() {
 
+        $users = User::with('roles')->whereHas("roles", function($q) {
+                    $q->whereNotIn("name", ['Super Admin', 'Client']);
+                })->get();
+
         $users = User::withoutRole(['Super Admin', 'Client'])->get();
         return view('role-permission.user.index', [
             'users' => $users
@@ -79,14 +83,12 @@ class UserController extends Controller implements HasMiddleware
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'password' => 'nullable|string|min:8|max:255',
             'roles' => 'required'
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
         ];
 
         if(!empty($request->password)) {

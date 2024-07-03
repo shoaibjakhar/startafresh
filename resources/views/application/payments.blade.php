@@ -91,7 +91,7 @@
                                       type="number" 
                                       name="amount" 
                                       id="ccjAmount" 
-                                      :value="old('ccj', ($application->id == $clientDebt->creditorOffice->ccjAmounts->application_id) ? $clientDebt->creditorOffice->ccjAmounts->amount : '')" 
+                                      :value="old('ccj', '')" 
                                       required 
                                     />
                                     

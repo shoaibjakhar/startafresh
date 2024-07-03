@@ -113,6 +113,12 @@ class PaymentsFromClientsController extends Controller
                 $ccjAmount += $clientDebt->creditorOffice->ccjAmounts->amount;
                 $total_clientDebt_for_mdi -= $clientDebt->current_debt;
                 $amount = $ccjAmount;
+            } else {
+
+                $MDI = $total_clientIncome - $total_clientExpenditure;
+
+        $amount = $MDI - $ccjAmount;
+
             }
 
 

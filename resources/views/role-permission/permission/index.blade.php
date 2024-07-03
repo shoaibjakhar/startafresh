@@ -32,7 +32,9 @@
                   <tr>
                     <th>SR#</th>
                     <th>Name</th>
-                    <th>Action</th>
+                    <th>Created At</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,22 +42,21 @@
 	                  <tr>
 	                    <td>{{ $key+1 }}</td>
 	                    <td>{{ $permission->name }}</td>
+                      <td>{{ $permission->created_at }}</td>
 	                    <td>
-                      
                         <x-buttons.edit 
                           :href="url('permissions/'. $permission->id .'/edit')"> 
                           {{ __('Edit') }}
                         </x-buttons.edit>
-	                    	
+                      </td>
+                      <td>
                         <x-buttons.delete 
                           :href="url('permissions/'. $permission->id .'/delete')">
                           {{ __('Delete') }}
                         </x-buttons.delete>
-	                    
                       </td>
 	                  </tr>
                 	@endforeach
-                  
                 </tbody>
               </table>
 
