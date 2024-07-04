@@ -36,7 +36,7 @@ class IncomeController extends Controller
             'amount' => $request->amount,
         ]);
 
-        return redirect('/clients')->with('status', "Income Created Successfully!");
+        return redirect('income/'.$request->userId.'/show')->with('status', "Income Created Successfully!");
 
 
     }
@@ -54,8 +54,21 @@ class IncomeController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'userId' => 'required',
+            'incomeType' => 'required|max:255',
+            'amount' => 'required',
+        ]);
 
-        dd($request);
+        foreach($request->ids as $key => $incomeId){
+            $client_income = ClientIncome::find($incomeId);
+
+            $client_income->income_type_key = $request->incomeType[$key];
+            $client_income->amount = $request->amount[$key];
+            $client_income->update();
+        }
+
+        return redirect('income/'.$request->userId.'/show')->with('status', "Income Updated Successfully!");
     }
 
     public function show(User $user) {
@@ -67,8 +80,8 @@ class IncomeController extends Controller
     }
 
     public function destroy($clientIncomeId) {
-        
-        $clientIncome = ClientIncome::findOrFail($clientIncomeId);
+
+        $clientIncome = ClientIncome::find($clientIncomeId);
         $clientIncome->delete();
 
         return redirect()->back()->with('success', "Client Income Deleted Successfully!");

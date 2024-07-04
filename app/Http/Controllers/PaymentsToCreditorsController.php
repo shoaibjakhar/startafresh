@@ -51,12 +51,27 @@ class PaymentsToCreditorsController extends Controller
             'creditor_office_id' => $request->creditor_office_id,
             'transaction_id' => $request->transaction_id,
             'payment_date' => $request->payment_date,
-            'ccj' => $request->ccj ?? false,
         
         ]);
 
         return redirect('applications')->with('success', 'Creditor Payment Created Successfully!');
 
+    }
+
+    public function edit($paymentsToCreditorId) {
+        $paymentsToCreditor = PaymentsToCreditors::find($paymentsToCreditorId);
+
+        return view('clients.payments.to_creditors.edit', compact('paymentsToCreditor'));
+    }
+
+    public function update(Request $request, $paymentsToCreditorId) {
+        $paymentsToCreditor = PaymentsToCreditors::find($paymentsToCreditorId)->update([
+            'amount' => $request->amount,
+            'transaction_id' => $request->transaction_id,
+            'payment_date' => $request->payment_date,
+        ]);
+
+        return redirect('paymentsToCreditors/'.$request->application_id)->with('success', 'Client Payment Updated Successfully!');
     }
 
 }

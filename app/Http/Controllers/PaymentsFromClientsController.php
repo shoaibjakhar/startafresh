@@ -51,7 +51,6 @@ class PaymentsFromClientsController extends Controller
             'creditor_office_id' => $request->creditor_office_id,
             'transaction_id' => $request->transaction_id,
             'payment_date' => $request->payment_date,
-            'ccj' => $request->ccj ?? false,
         
         ]);
 
@@ -59,12 +58,20 @@ class PaymentsFromClientsController extends Controller
 
     }
 
-    public function edit() {
-        
+    public function edit($paymentsFromClientId) {
+        $paymentsFromClient = PaymentsFromClients::find($paymentsFromClientId);
+
+        return view('clients.payments.from_clients.edit', compact('paymentsFromClient'));
     }
 
-    public function update() {
-        
+    public function update(Request $request, $paymentsFromClientId) {
+        $paymentFromClient = PaymentsFromClients::find($paymentsFromClientId)->update([
+            'amount' => $request->amount,
+            'transaction_id' => $request->transaction_id,
+            'payment_date' => $request->payment_date,
+        ]);
+
+        return redirect('paymentsFromClient/'.$request->application_id)->with('success', 'Client Payment Updated Successfully!');
     }
 
     public function destroy() {

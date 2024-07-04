@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('addresses')->nullable();
             $table->string('town_city')->nullable();
             $table->string('postcode')->nullable();
-            $table->string('primary_phone');
-            $table->string('primary_email');
+            $table->string('primary_phone')->nullable();
+            $table->string('primary_email')->nullable();
             $table->string('web')->nullable();
-            $table->string('contact_forename');
+            $table->string('contact_forename')->nullable();
             $table->string('contact_surname')->nullable();
             $table->string('contact_mobile')->nullable();
             $table->string('contact_email')->nullable();

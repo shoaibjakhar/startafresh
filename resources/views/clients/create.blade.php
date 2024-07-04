@@ -141,6 +141,36 @@
                   <x-input-error class="mt-2" :messages="$errors->get('ni_number')" />
 
                 </div>
+
+                <div class="col-md-4">
+                  <x-input-label for="address"> {{ __("Address") }}</x-input-label>
+                  <x-text-input 
+                    type="text" 
+                    name="address" 
+                    id="address" 
+                    :value="old('address', '')" 
+                  />
+                  
+                  <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
+                  
+                  <x-input-error class="mt-2" :messages="$errors->get('address')" />
+
+                </div>
+
+                <div class="col-md-4">
+                  <x-input-label for="postcode"> {{ __("Post Code") }}</x-input-label>
+                  <x-text-input 
+                    type="text" 
+                    name="postcode" 
+                    id="postcode" 
+                    :value="old('postcode', '')" 
+                  />
+                  
+                  <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
+                  
+                  <x-input-error class="mt-2" :messages="$errors->get('postcode')" />
+
+                </div>
                 <div class="row">
                   <h5 class="card-title">Questions</h5>
 
@@ -154,7 +184,6 @@
                     name="answers_to_securiety_questions[{{ $question->value }}]" 
                     id="" 
                     value="" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -175,7 +204,6 @@
                       name="bank_name" 
                       id="bankName" 
                       :value="old('bank_name', '')" 
-                      required 
                     />
                     
                     <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -191,7 +219,6 @@
                     name="account_number" 
                     id="accountNumber" 
                     :value="old('account_number', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -207,7 +234,6 @@
                     name="sort_code_number" 
                     id="sortCodeNumber" 
                     :value="old('sort_code_number', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>

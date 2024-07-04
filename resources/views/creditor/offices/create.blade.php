@@ -61,7 +61,6 @@
                     name="addresses[]" 
                     id="address1" 
                     :value="old('address1', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -77,7 +76,6 @@
                     name="addresses[]" 
                     id="address2" 
                     :value="old('address1', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -93,7 +91,6 @@
                     name="town_city" 
                     id="townCity" 
                     :value="old('town_city', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -109,7 +106,6 @@
                     name="postcode" 
                     id="postCode" 
                     :value="old('postcode', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -125,7 +121,6 @@
                     name="primary_phone" 
                     id="primaryPhone" 
                     :value="old('primary_phone', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -142,7 +137,6 @@
                     name="primary_email" 
                     id="primaryEmail" 
                     :value="old('primary_email', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -162,7 +156,6 @@
                       name="contact_forename" 
                       id="contactForename" 
                       :value="old('contact_forename', '')" 
-                      required 
                     />
                     
                     <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -178,7 +171,6 @@
                       name="contact_surname" 
                       id="contactsurname" 
                       :value="old('contact_surname', '')" 
-                      required 
                     />
                     
                     <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -194,7 +186,6 @@
                       name="contact_mobile" 
                       id="contactMobile" 
                       :value="old('contact_mobile', '')" 
-                      required 
                     />
                     
                     <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -211,7 +202,6 @@
                       name="contact_email" 
                       id="contactEmail" 
                       :value="old('contact_email', '')" 
-                      required 
                     />
                     
                     <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -229,7 +219,6 @@
                     name="account_number" 
                     id="accountNumber" 
                     :value="old('account_number', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>
@@ -246,7 +235,6 @@
                     name="sort_code_number" 
                     id="sortCodeNumber" 
                     :value="old('sort_code_number', '')" 
-                    required 
                   />
                   
                   <x-input-looks-good>{{ __("Looks good!") }}</x-input-looks-good>

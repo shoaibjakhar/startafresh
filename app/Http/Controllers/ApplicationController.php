@@ -9,6 +9,7 @@ use App\Models\CreditorOffice;
 use App\Models\Payment;
 use App\Models\CcjAmounts;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class ApplicationController extends Controller
 {
@@ -55,7 +56,7 @@ public function index()
         $application = Application::create([
             'user_id' => $request->user_id,
             'user_id2' => $request->user_id2 ?? '',
-            'created_by' => Auth::id(),
+            'created_by' => FacadesAuth::id(),
             'notes' => $request->notes
         ]);
 
@@ -63,9 +64,27 @@ public function index()
 
     }
 
-    public function edit(Application $application) {
+    public function edit($applicationId) {
 
-        dd($application);
+        
+        $application = Application::find($applicationId);
+        $users = User::Role(['Client'])->get();
+
+        return view('application.edit', compact('application', 'users'));
+
+    }
+
+    public function update(Request $request, $applicationId) {
+
+        
+        $application = Application::find($applicationId);
+
+        $application->user_id = $request->user_id;
+        $application->user_id2 = $request->user_id2;
+        $application->notes = $request->notes;
+        $application->update();
+
+        return redirect('applications')->with('Success', 'Application Updated Successfully!');
 
     }
 
@@ -228,7 +247,18 @@ public function index()
             'application_id' => $request->application_id,
             'creditor_office_id' => $request->creditor_office_id
         ]);
+
         return redirect()->back()->with('Success', 'CCJ Amount Added Successfully!');
+    }
+
+    function destroy($applicationId){
+        $application = Application::find($applicationId);
+
+        if(!empty($application)){
+            $application->delete();
+        }
+
+        return redirect()->back()->with('Success', 'Application Deleted Successfully!');
     }
 
     

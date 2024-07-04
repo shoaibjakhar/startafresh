@@ -18,6 +18,8 @@ return new class extends Migration
             $table->date('dob');
             $table->string('mobile');
             $table->string('ni_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode')->nullable();
             $table->mediumText('answers_to_securiety_questions')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();

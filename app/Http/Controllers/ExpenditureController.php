@@ -52,8 +52,21 @@ class ExpenditureController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'userId' => 'required',
+            'expenditureType' => 'required|max:255',
+            'amount' => 'required',
+        ]);
 
-        dd($request);
+        foreach($request->ids as $key => $expenditureId){
+            $client_expenditure = ClientExpenditure::find($expenditureId);
+
+            $client_expenditure->expenditure_type_key = $request->expenditureType[$key];
+            $client_expenditure->amount = $request->amount[$key];
+            $client_expenditure->update();
+        }
+
+        return redirect('expenditure/'.$request->userId.'/show')->with('status', "Expenditure Updated Successfully!");
     }
 
     public function show(User $user) {

@@ -38,17 +38,31 @@ class DebtController extends Controller
             'notes' => $request->notes,
         ]);
 
-        return redirect('clients')->with('success', "Client Debt Created Successfully!");
+        return redirect('debt/'.$request->user_id.'/show')->with('success', "Client Debt Created Successfully!");
 
     }
 
     public function show(User $user) {
 
-        $user->load('clientDebts.creditorOffice');        
+        $user->load('clientDebts.creditorOffice');
+        // $user = User::with('clientDebts')->find($userId);
 
         return view('clients.debt.show', [
             'user' => $user
         ]);
 
+    }
+
+    public function destroy($debtId) {
+
+        $clinetDebt = ClientDebt::find($debtId);
+
+        if(!empty($clinetDebt)){
+            $clinetDebt->delete();
+
+            return redirect()->back()->with('success', "Debt Deleted Successfully!");
+        }
+
+        return redirect()->back()->with('success', "Debt Not Found!");
     }
 }
